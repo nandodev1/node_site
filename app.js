@@ -15,6 +15,8 @@ app.all('/secreto',(requisicao, resposta) => {
 
 app.use('/wiki',wiki);
 
+app.use('/fotos',express.static('public'));
+
 app.listen(8000,function(){
     console.log('Servidor executando em http://127.0.0.1:8000');
 });
