@@ -39,7 +39,7 @@ var t1 = function (x,y,next){
 
 function t2(x,y){
   console.log(x - y);
-}
+};
 
 t1(10,5,t2);
 
@@ -49,3 +49,47 @@ var mongo = require('mongodb');
 var mongoCliente = mongo.MongoClient;
 
 //mongoCliente.connect('mongodb://localhost:2701')
+
+// Interface
+
+class IrepositorioPessoa{
+
+  get(nome){};
+  update(obj){};
+  delete(id){};
+  add(obj){};
+
+};
+
+class RepositorioPessoa extends IrepositorioPessoa{
+ 
+  constructor(){
+    super();
+    this.repositorio = new Array(100);
+    this.tamanhoRepositorio = 0;
+  }
+  get(id){
+    for (var i in this.rep){
+      if (i.nome == id)return i;
+    }
+  }
+
+  add(obj){
+    this.repositorio[this.tamanhoRepositorio] = obj;
+    this.tamanhoRepositorio += 1;
+  }
+
+};
+
+class Repo extends RepositorioPessoa{
+  get(id){super.get(id);}
+  add(obj){super.add(obj);}
+};
+
+var r1 = new Repo();
+
+r1.add(pessoa1);
+
+var resgate = r1.add('Jaine');
+
+console.log(resgate);
